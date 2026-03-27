@@ -1,75 +1,67 @@
 <!DOCTYPE html>
 <html lang="ko">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>보수대장</title>
-  <script src="https://cdn.tailwindcss.com"></script>
+  <style>
+    body {margin:0;font-family:sans-serif;}
+    .section{padding:40px;}
+    .grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;}
+    .card{cursor:pointer;position:relative;border-radius:12px;overflow:hidden}
+    .card img{width:100%;height:180px;object-fit:cover}
+    .overlay{position:absolute;bottom:0;background:rgba(0,0,0,0.6);color:#fff;width:100%;padding:10px}
+    .detail{display:none;padding:40px;background:#f5f5f5}
+    .active{display:block}
+  </style>
 </head>
-
 <body>
-<div id="app"></div>
+
+<!-- 메인 -->
+<section class="section">
+  <h1>보수대장</h1>
+  <div class="grid">
+    <div class="card" onclick="openDetail('d1')">
+      <img src="photo1.png"><div class="overlay">고무칩 복층포장</div>
+    </div>
+    <div class="card" onclick="openDetail('d2')">
+      <img src="photo2.png"><div class="overlay">고무칩 단층포장</div>
+    </div>
+    <div class="card" onclick="openDetail('d3')">
+      <img src="photo3.png"><div class="overlay">폴리우레탄</div>
+    </div>
+  </div>
+</section>
+
+<!-- 상세 영역 -->
+<div id="d1" class="detail">
+  <h2>고무칩 복층포장</h2>
+  <img src="photo11.png" loading="lazy" width="300">
+  <img src="photo12.png" loading="lazy" width="300">
+  <p>놀이터 안전 바닥 시공</p>
+</div>
+
+<div id="d2" class="detail">
+  <h2>고무칩 단층포장</h2>
+  <img src="photo13.png" loading="lazy" width="300">
+  <img src="photo14.png" loading="lazy" width="300">
+  <p>산책로 및 보행로 시공</p>
+</div>
+
+<div id="d3" class="detail">
+  <h2>폴리우레탄 체육시설</h2>
+  <img src="photo15.png" loading="lazy" width="300">
+  <img src="photo16.png" loading="lazy" width="300">
+  <p>운동장 및 체육시설 바닥</p>
+</div>
 
 <script>
-
-const detailPages = [
-  {
-    slug: 'rubber-double',
-    title: '고무칩 복층포장',
-    subtitle: '어린이 놀이터 등',
-    hero: './photo1.png',
-    summary: '탄성포장 보수 공법입니다.',
-    points: ['충격 흡수','안전성'],
-    painPoints: ['균열','들뜸'],
-    solutions: ['부분보수'],
-    process: ['확인','시공'],
-    beforeAfter: [
-      { before: './before1.jpg', after: './after1.jpg' }
-    ],
-    processImages: ['./process1.jpg'],
-    applications: ['놀이터'],
-    cta: '문의 바랍니다.'
-  }
-];
-
-function detailView(d){
-return `
-<div>
-<h1>${d.title}</h1>
-<p>${d.summary}</p>
-</div>
-`;
+function openDetail(id){
+  document.querySelectorAll('.detail').forEach(d=>d.classList.remove('active'));
+  document.getElementById(id).classList.add('active');
+  window.scrollTo({top:document.getElementById(id).offsetTop,behavior:'smooth'});
 }
-
-function homeView(){
-return `
-<div>
-<h1>보수대장</h1>
-${detailPages.map(p=>`
-<div onclick="openDetail('${p.slug}')">${p.title}</div>
-`).join('')}
-</div>
-`;
-}
-
-function render(){
-  const hash = location.hash.replace('#','');
-  if(hash.startsWith('detail/')){
-    const slug = hash.replace('detail/','');
-    const d = detailPages.find(x=>x.slug===slug);
-    app.innerHTML = detailView(d);
-  }else{
-    app.innerHTML = homeView();
-  }
-}
-
-function openDetail(slug){
-  location.hash = 'detail/' + slug;
-}
-
-window.addEventListener('hashchange', render);
-render();
-
 </script>
+
 </body>
 </html>
