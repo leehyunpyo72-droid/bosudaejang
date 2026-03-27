@@ -517,21 +517,19 @@
           <section id="photos" class="mx-auto max-w-7xl px-6 py-20">
             <div class="text-sm font-semibold text-slate-500">GALLERY</div>
             <h2 class="section-title mt-3 text-3xl font-bold md:text-4xl">시공사진</h2>
-            <div class="mt-10 grid gap-6 md:grid-cols-3">
-              <div class="grid gap-6 md:grid-cols-2">
-                <div class="rounded-[2rem] bg-white p-4 shadow-sm ring-1 ring-slate-200">
-                  <div class="mb-3 text-sm font-semibold text-slate-500">보수 전</div>
-                  <button onclick="openStandaloneLightbox(0)" class="block w-full overflow-hidden rounded-[1.5rem]">
-                    <img src="./photo11.png" alt="보수 전" class="h-72 w-full rounded-[2rem] object-cover shadow-sm ring-1 ring-slate-200" />
-                  </button>
-                </div>
-                <div class="rounded-[2rem] bg-white p-4 shadow-sm ring-1 ring-slate-200">
-                  <div class="mb-3 text-sm font-semibold text-slate-500">보수 후</div>
-                  <button onclick="openStandaloneLightbox(1)" class="block w-full overflow-hidden rounded-[1.5rem]">
-                    <img src="./photo12.png" alt="보수 후" class="h-72 w-full rounded-[2rem] object-cover shadow-sm ring-1 ring-slate-200" />
-                  </button>
-                </div>
-              </div>
+            <p class="mt-4 max-w-2xl text-sm leading-7 text-slate-600">현장 분위기와 마감 품질을 한눈에 확인할 수 있도록 시공사진을 갤러리 형태로 구성했습니다.</p>
+            <div class="mt-10 grid gap-6 md:grid-cols-2 xl:grid-cols-3">
+              ${['./case_01.png', './case_02.png', './case_03.png', './case_04.png', './case_05.png', './case_06.png'].map((img, index) => `
+                <button onclick="openStandaloneLightbox(${index})" class="group overflow-hidden rounded-[2rem] bg-white text-left shadow-sm ring-1 ring-slate-200 transition hover:-translate-y-1 hover:shadow-lg">
+                  <div class="aspect-[4/3] w-full overflow-hidden bg-slate-100">
+                    <img src="${img}" alt="시공사진 ${index + 1}" class="h-full w-full object-cover transition duration-500 group-hover:scale-[1.03]" />
+                  </div>
+                  <div class="p-5">
+                    <div class="text-base font-semibold text-slate-900">시공사진 ${index + 1}</div>
+                    <div class="mt-1 text-sm text-slate-500">현장 이미지</div>
+                  </div>
+                </button>
+              `).join('')}
             </div>
           </section>
 
@@ -670,7 +668,7 @@
       }
 
       function openStandaloneLightbox(index) {
-        const images = ['./d_rd_01.png', './d_rd_02.png'];
+        const images = ['./case_01.png', './case_02.png', './case_03.png', './case_04.png', './case_05.png', './case_06.png'];
         lightboxImages = images.map((src, i) => ({ src, alt: `시공사진 ${i + 1}` }));
         lightboxIndex = index;
         renderLightbox();
