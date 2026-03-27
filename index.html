@@ -1,67 +1,387 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="ko">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>보수대장</title>
-  <style>
-    body {margin:0;font-family:sans-serif;}
-    .section{padding:40px;}
-    .grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;}
-    .card{cursor:pointer;position:relative;border-radius:12px;overflow:hidden}
-    .card img{width:100%;height:180px;object-fit:cover}
-    .overlay{position:absolute;bottom:0;background:rgba(0,0,0,0.6);color:#fff;width:100%;padding:10px}
-    .detail{display:none;padding:40px;background:#f5f5f5}
-    .active{display:block}
-  </style>
-</head>
-<body>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>보수대장 | 탄성포장재보수전문회사</title>
+    <meta name="description" content="보수대장은 탄성포장재 보수 전문 회사로 부분보수부터 전체 재시공까지 현장 상황에 맞는 최적의 해결책을 제공합니다." />
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+      html { scroll-behavior: smooth; }
+      body { font-family: Pretendard, Apple SD Gothic Neo, Noto Sans KR, system-ui, sans-serif; }
+    </style>
+  </head>
+  <body class="bg-white text-slate-900">
+    <div id="app"></div>
 
-<!-- 메인 -->
-<section class="section">
-  <h1>보수대장</h1>
-  <div class="grid">
-    <div class="card" onclick="openDetail('d1')">
-      <img src="photo1.png"><div class="overlay">고무칩 복층포장</div>
-    </div>
-    <div class="card" onclick="openDetail('d2')">
-      <img src="photo2.png"><div class="overlay">고무칩 단층포장</div>
-    </div>
-    <div class="card" onclick="openDetail('d3')">
-      <img src="photo3.png"><div class="overlay">폴리우레탄</div>
-    </div>
-  </div>
-</section>
+    <script>
+      const detailPages = [
+        {
+          slug: 'rubber-double-layer',
+          title: '고무칩 복층포장',
+          subtitle: '어린이 놀이터 등',
+          hero: './photo1.png',
+          summary: '충격 흡수성과 안전성을 고려한 복층 구조 포장 방식으로 어린이 놀이터, 유치원, 학교 시설 등에 적합한 시공 솔루션입니다.',
+          points: ['상부와 하부를 분리한 복층 구조로 탄성과 내구성 확보', '어린이 활동 공간에 적합한 충격 완화 성능', '색상 구성과 패턴 적용이 쉬워 디자인 연출 가능'],
+          images: ['./photo11.png', './photo12.png', './photo13.png'],
+        },
+        {
+          slug: 'rubber-single-layer',
+          title: '고무칩 단층포장',
+          subtitle: '산책로, 체육시설 등',
+          hero: './photo2.png',
+          summary: '경제성과 시공 효율을 고려한 단층 포장으로 산책로, 보행로, 각종 체육시설 주변 공간에 폭넓게 적용할 수 있습니다.',
+          points: ['비용 효율이 높고 유지보수가 편리한 구조', '보행 동선과 야외 활동 공간에 적합', '현장 용도에 따라 두께 및 마감 조정 가능'],
+          images: ['./photo14.png', './photo15.png', './photo16.png'],
+        },
+        {
+          slug: 'polyurethane-sports',
+          title: '폴리우레탄체육시설',
+          subtitle: '육상트랙/다목적구장 등',
+          hero: './photo3.png',
+          summary: '육상트랙, 다목적구장, 학교 체육시설에 적합한 전문 바닥 시스템으로 운동 성능과 내구성을 함께 고려한 시공입니다.',
+          points: ['운동 특성에 맞춘 탄성 및 마찰 성능 확보', '학교 및 공공체육시설에 폭넓게 적용 가능', '기존 바닥 상태에 맞춘 보수 또는 재시공 가능'],
+          images: ['./photo17.png', './photo18.png', './photo19.png'],
+        },
+        {
+          slug: 'coating-floor',
+          title: '도막형 바닥재',
+          subtitle: '미끄럼방지/주차장 등',
+          hero: './photo4.png',
+          summary: '도막형 바닥재는 미끄럼 저항성과 내구성을 높여 주차장, 진출입로, 경사로 등 다양한 공간에 적용할 수 있는 실용적인 솔루션입니다.',
+          points: ['미끄럼방지 성능 강화', '주차장 및 경사로 환경에 적합', '현장 환경에 따라 다양한 마감 선택 가능'],
+          images: ['./photo20.png', './photo21.png', './photo22.png'],
+        },
+        {
+          slug: 'cork-color-sand',
+          title: '코르크포장/칼라규사',
+          subtitle: '산책로, 놀이터 등',
+          hero: './photo5.png',
+          summary: '자연스러운 질감과 다양한 색상 표현이 가능한 포장 방식으로 산책로, 놀이터, 휴게공간 등 경관과 기능을 함께 고려하는 공간에 적합합니다.',
+          points: ['경관 친화적인 자연스러운 연출 가능', '다양한 색상과 질감 구현 가능', '보행 공간 및 휴게 공간에 적합'],
+          images: ['./photo23.png', './photo24.png', './photo25.png'],
+        },
+        {
+          slug: 'epoxy-polyurea',
+          title: '에폭시/폴리우레아',
+          subtitle: '공장바닥, 주차장 등',
+          hero: './photo6.png',
+          summary: '에폭시와 폴리우레아 바닥 시스템은 공장, 창고, 주차장 등 고강도 내구성과 유지관리 효율이 중요한 공간에 적합합니다.',
+          points: ['내마모성과 내오염성이 우수한 바닥 시스템', '산업 현장과 주차장 환경에 적합', '사용 목적에 따라 다양한 사양 적용 가능'],
+          images: ['./photo26.png', './photo27.png', './photo28.png'],
+        },
+        {
+          slug: 'loess-soil-concrete',
+          title: '황토포장/흙콘크리트',
+          subtitle: '산책로, 광장 등',
+          hero: './photo7.png',
+          summary: '자연 친화적인 분위기를 조성하는 포장 방식으로 산책로, 광장, 공원 공간 등에 어울리는 바닥 솔루션입니다.',
+          points: ['자연스러운 색감과 분위기 연출', '공원 및 광장 등 외부 공간에 적합', '현장 여건에 따라 다양한 시공 방식 적용 가능'],
+          images: ['./photo29.png', './photo30.png', './photo31.png'],
+        },
+        {
+          slug: 'chemical-tennis-court',
+          title: '케미칼 테니스코트',
+          subtitle: '아크릴 하드코트',
+          hero: './photo8.png',
+          summary: '케미칼 테니스코트는 균일한 구질과 안정적인 경기 환경을 제공하는 아크릴 하드코트 방식으로 각종 테니스 시설에 적합합니다.',
+          points: ['일정한 표면 상태와 경기 성능 확보', '학교, 체육시설, 공공 코트에 적합', '기존 코트 보수 및 재도장 대응 가능'],
+          images: ['./photo32.png', './photo33.png', './photo34.png'],
+        },
+        {
+          slug: 'artificial-turf',
+          title: '인조잔디포장',
+          subtitle: '각종 체육시설 등',
+          hero: './photo9.png',
+          summary: '각종 체육시설과 야외 활동 공간에 적합한 인조잔디 포장으로 관리 효율과 활용도를 함께 높일 수 있습니다.',
+          points: ['다양한 체육시설에 적용 가능한 범용성', '유지관리 효율이 높고 시각적 완성도가 우수', '사용 목적에 맞춘 규격과 충진재 구성 가능'],
+          images: ['./photo35.png', './photo36.png', './photo37.png'],
+        },
+      ];
 
-<!-- 상세 영역 -->
-<div id="d1" class="detail">
-  <h2>고무칩 복층포장</h2>
-  <img src="photo11.png" loading="lazy" width="300">
-  <img src="photo12.png" loading="lazy" width="300">
-  <p>놀이터 안전 바닥 시공</p>
-</div>
+      function detailView(detail) {
+        return `
+        <div class="min-h-screen bg-white text-slate-900">
+          <header class="sticky top-0 z-50 border-b bg-white/95 backdrop-blur">
+            <div class="mx-auto flex max-w-7xl items-center justify-between px-6 py-4">
+              <button onclick="goHome()" class="text-left">
+                <div class="text-xl font-bold">보수대장</div>
+                <div class="text-xs text-gray-500">탄성포장재보수전문회사</div>
+              </button>
+              <button onclick="goHome()" class="rounded-2xl border border-slate-300 px-4 py-2 text-sm font-semibold text-slate-700 transition hover:bg-slate-50">홈으로 돌아가기</button>
+            </div>
+          </header>
 
-<div id="d2" class="detail">
-  <h2>고무칩 단층포장</h2>
-  <img src="photo13.png" loading="lazy" width="300">
-  <img src="photo14.png" loading="lazy" width="300">
-  <p>산책로 및 보행로 시공</p>
-</div>
+          <section class="relative overflow-hidden border-b bg-slate-950 text-white">
+            <img src="${detail.hero}" alt="${detail.title}" class="absolute inset-0 h-full w-full object-cover opacity-35" />
+            <div class="relative mx-auto max-w-7xl px-6 py-20 md:py-28">
+              <div class="max-w-3xl">
+                <div class="inline-flex rounded-full border border-white/20 bg-white/10 px-4 py-1 text-sm text-white/90">${detail.subtitle}</div>
+                <h1 class="mt-5 text-4xl font-bold leading-tight md:text-6xl">${detail.title}</h1>
+                <p class="mt-6 text-base leading-8 text-white/80 md:text-lg">${detail.summary}</p>
+                <div class="mt-8 flex flex-wrap gap-3">
+                  <a href="#estimate" onclick="goHomeAndScroll('estimate')" class="inline-flex min-h-12 items-center justify-center rounded-2xl bg-white px-6 py-3 text-sm font-semibold text-slate-900">상담 문의하기</a>
+                  <button onclick="goHome()" class="inline-flex min-h-12 items-center justify-center rounded-2xl border border-white/30 px-6 py-3 text-sm font-semibold text-white">다른 공법 보기</button>
+                </div>
+              </div>
+            </div>
+          </section>
 
-<div id="d3" class="detail">
-  <h2>폴리우레탄 체육시설</h2>
-  <img src="photo15.png" loading="lazy" width="300">
-  <img src="photo16.png" loading="lazy" width="300">
-  <p>운동장 및 체육시설 바닥</p>
-</div>
+          <section class="mx-auto grid max-w-7xl gap-10 px-6 py-20 md:grid-cols-[1.1fr_0.9fr]">
+            <div>
+              <div class="text-sm font-semibold text-slate-500">DETAIL</div>
+              <h2 class="mt-3 text-3xl font-bold tracking-tight md:text-4xl">주요 특징</h2>
+              <div class="mt-8 grid gap-4">
+                ${detail.points.map(point => `<div class="rounded-3xl border border-slate-200 bg-slate-50 px-5 py-4 text-sm leading-7 text-slate-700">${point}</div>`).join('')}
+              </div>
+            </div>
+            <div class="rounded-[2rem] border border-slate-200 p-8 shadow-sm">
+              <div class="text-sm font-semibold text-slate-500">안내</div>
+              <h3 class="mt-3 text-2xl font-bold">현장 맞춤 상담 진행</h3>
+              <p class="mt-4 text-sm leading-7 text-slate-600">실제 상세페이지에서는 공법 설명, 적용 장소, 시공 순서, 보수 전후 사진, 주요 실적, 자재 정보 등을 자유롭게 추가할 수 있습니다.</p>
+              <div class="mt-6 grid gap-3 text-sm text-slate-700">
+                <div class="rounded-2xl bg-slate-50 px-4 py-3">적용장소: ${detail.subtitle}</div>
+                <div class="rounded-2xl bg-slate-50 px-4 py-3">대표이미지: ${detail.hero}</div>
+                <div class="rounded-2xl bg-slate-50 px-4 py-3">추가이미지: ${detail.images.join(', ')}</div>
+              </div>
+            </div>
+          </section>
 
-<script>
-function openDetail(id){
-  document.querySelectorAll('.detail').forEach(d=>d.classList.remove('active'));
-  document.getElementById(id).classList.add('active');
-  window.scrollTo({top:document.getElementById(id).offsetTop,behavior:'smooth'});
-}
-</script>
+          <section class="bg-slate-50 py-20">
+            <div class="mx-auto max-w-7xl px-6">
+              <div>
+                <div class="text-sm font-semibold text-slate-500">GALLERY</div>
+                <h2 class="mt-3 text-3xl font-bold tracking-tight md:text-4xl">상세 이미지 예시</h2>
+              </div>
+              <div class="mt-10 grid gap-6 md:grid-cols-3">
+                ${detail.images.map((img, index) => `
+                <div class="overflow-hidden rounded-[2rem] bg-white shadow-sm ring-1 ring-slate-200">
+                  <img src="${img}" alt="${detail.title} ${index + 1}" class="h-64 w-full object-cover" />
+                  <div class="p-4 text-sm font-medium text-slate-700">상세 이미지 ${index + 1}</div>
+                </div>`).join('')}
+              </div>
+            </div>
+          </section>
+        </div>`;
+      }
 
-</body>
+      function homeView() {
+        return `
+        <div class="min-h-screen bg-white text-slate-900">
+          <header class="sticky top-0 z-50 border-b bg-white">
+            <div class="mx-auto flex max-w-7xl items-center justify-between px-6 py-4">
+              <button onclick="goHome()" class="text-left">
+                <div class="text-xl font-bold">보수대장</div>
+                <div class="text-xs text-gray-500">탄성포장재보수전문회사</div>
+              </button>
+              <nav class="hidden items-center gap-8 text-sm font-medium md:flex">
+                <a href="#company" class="hover:text-gray-500">기업정보</a>
+                <a href="#products" class="hover:text-gray-500">제품소개</a>
+                <a href="#photos" class="hover:text-gray-500">시공사진</a>
+                <a href="#colorchart" class="hover:text-gray-500">색견표</a>
+                <a href="#library" class="hover:text-gray-500">자료실</a>
+                <a href="#estimate" class="hover:text-gray-500">소량시공 견적문의</a>
+              </nav>
+            </div>
+          </header>
+
+          <section id="home" class="relative overflow-hidden">
+            <img src="./hero.png" class="absolute inset-0 h-full w-full object-cover opacity-20" />
+            <div class="relative mx-auto max-w-7xl px-6 py-20 md:py-32">
+              <div class="max-w-3xl">
+                <h1 class="text-4xl font-bold leading-tight md:text-6xl">손상된 탄성포장재를<br />빠르고 정확하게 복원합니다</h1>
+                <p class="mt-6 max-w-2xl text-base leading-7 text-gray-600 md:text-lg">보수대장은 탄성포장재 보수 전문 회사로 부분보수부터 전체 재시공까지 현장 상황에 맞는 최적의 해결책을 제공합니다.</p>
+                <div class="mt-8 flex flex-wrap gap-3">
+                  <a href="#estimate" class="inline-flex min-h-12 items-center justify-center rounded-2xl bg-slate-900 px-6 py-3 text-sm font-semibold text-white shadow-sm transition hover:-translate-y-0.5">상담 문의하기</a>
+                  <a href="#products" class="inline-flex min-h-12 items-center justify-center rounded-2xl border border-slate-300 bg-white/90 px-6 py-3 text-sm font-semibold text-slate-700 transition hover:bg-white">포트폴리오 보기</a>
+                </div>
+              </div>
+
+              <div class="mt-12 grid grid-cols-2 gap-3 sm:grid-cols-3 lg:grid-cols-5">
+                ${detailPages.map(item => `
+                  <button onclick="openDetail('${item.slug}')" class="group relative overflow-hidden rounded-3xl border border-white/70 bg-white/85 text-left shadow-md backdrop-blur transition hover:-translate-y-1 hover:shadow-lg">
+                    <div class="aspect-[4/3] w-full overflow-hidden">
+                      <img src="${item.hero}" alt="${item.title}" class="h-full w-full object-cover transition duration-300 group-hover:scale-105" />
+                    </div>
+                    <div class="absolute inset-x-0 bottom-0 bg-gradient-to-t from-black/75 to-transparent px-4 py-4">
+                      <div class="text-sm font-semibold text-white sm:text-base">${item.title}</div>
+                      <div class="text-xs text-gray-200">(${item.subtitle})</div>
+                    </div>
+                  </button>`).join('')}
+              </div>
+            </div>
+          </section>
+
+          <section class="max-w-7xl mx-auto px-6 py-20">
+            <div class="grid md:grid-cols-3 gap-6 mb-16">
+              ${['부분보수 가능 (비용 절감)', '기존 바닥 철거 없이 보수', '긴급 보수 빠른 대응'].map(text => `<div class="rounded-2xl border bg-slate-50 p-6 text-center font-semibold text-slate-700">✔ ${text}</div>`).join('')}
+            </div>
+
+            <div class="mb-16">
+              <h2 class="text-3xl font-bold mb-6">Before / After</h2>
+              <div class="grid md:grid-cols-2 gap-6">
+                <div>
+                  <img src="./photo11.png" class="w-full h-64 object-cover rounded-xl" />
+                  <p class="mt-2 text-sm text-gray-500">Before (보수 전)</p>
+                </div>
+                <div>
+                  <img src="./photo12.png" class="w-full h-64 object-cover rounded-xl" />
+                  <p class="mt-2 text-sm text-gray-500">After (보수 후)</p>
+                </div>
+              </div>
+            </div>
+
+            <div>
+              <h2 class="text-3xl font-bold mb-6">작업 과정</h2>
+              <div class="grid md:grid-cols-4 gap-6">
+                ${['현장 확인 및 상태 점검', '보수 방법 안내 및 견적', '전문 시공 진행', '완료 후 점검 및 마무리'].map((step, i) => `<div class="rounded-2xl border p-6 text-center"><div class="text-lg font-bold mb-2">${i + 1}</div><div class="text-sm text-slate-600">${step}</div></div>`).join('')}
+              </div>
+            </div>
+          </section>
+
+          <section class="max-w-7xl mx-auto px-6 py-20">
+            <h2 class="text-3xl font-bold mb-10">실제 시공 사례</h2>
+            <div class="grid gap-6 md:grid-cols-3">
+              ${[
+                { img: './photo45.png', title: '어린이 놀이터 고무칩 보수', desc: '노후된 놀이터 바닥을 부분보수하여 안전성과 미관을 동시에 개선' },
+                { img: './photo46.png', title: '아파트 단지 산책로 보수', desc: '균열 및 들뜸 발생 구간을 보수하여 보행 안전 확보' },
+                { img: './photo47.png', title: '학교 운동장 우레탄 트랙 보수', desc: '마모된 트랙을 재정비하여 운동 성능 및 내구성 개선' },
+              ].map(item => `
+                <div class="overflow-hidden rounded-[2rem] border shadow-sm hover:shadow-lg transition">
+                  <img src="${item.img}" alt="${item.title}" class="h-56 w-full object-cover" />
+                  <div class="p-5">
+                    <div class="text-lg font-semibold">${item.title}</div>
+                    <p class="mt-2 text-sm text-slate-600">${item.desc}</p>
+                  </div>
+                </div>`).join('')}
+            </div>
+          </section>
+
+          <section id="products" class="max-w-7xl mx-auto px-6 py-20">
+            <h2 class="mb-10 text-3xl font-bold">제품소개</h2>
+            <div class="grid gap-6 md:grid-cols-3">
+              ${detailPages.slice(0, 6).map(item => `
+                <button onclick="openDetail('${item.slug}')" class="overflow-hidden rounded-[2rem] border text-left shadow-sm transition hover:-translate-y-1 hover:shadow-lg">
+                  <img src="${item.hero}" alt="${item.title}" class="h-56 w-full object-cover" />
+                  <div class="p-5">
+                    <div class="text-lg font-semibold">${item.title}</div>
+                    <div class="mt-1 text-sm text-slate-500">${item.subtitle}</div>
+                    <p class="mt-3 text-sm leading-7 text-slate-600">자세한 시공 설명과 사진, 적용 사례를 상세페이지 형식으로 연결할 수 있습니다.</p>
+                  </div>
+                </button>`).join('')}
+            </div>
+          </section>
+
+          <section id="company" class="bg-gray-100 py-20">
+            <div class="max-w-7xl mx-auto px-6">
+              <h2 class="mb-10 text-3xl font-bold">기업정보</h2>
+              <div class="grid gap-8 md:grid-cols-2">
+                <div class="rounded-[2rem] bg-white p-8 shadow-sm">
+                  <h3 class="text-xl font-semibold">회사 소개</h3>
+                  <p class="mt-4 text-sm leading-7 text-slate-600">보수대장은 탄성포장재 보수와 재시공을 중심으로 다양한 야외 및 체육시설 바닥 공사를 수행하는 전문 회사입니다.</p>
+                </div>
+                <div class="rounded-[2rem] bg-white p-8 shadow-sm">
+                  <h3 class="text-xl font-semibold">주요 업무</h3>
+                  <p class="mt-4 text-sm leading-7 text-slate-600">부분보수, 전체 재포장, 체육시설 바닥 보수, 에폭시·폴리우레아 공사, 인조잔디 및 특수 포장 시공을 진행합니다.</p>
+                </div>
+              </div>
+            </div>
+          </section>
+
+          <section id="photos" class="max-w-7xl mx-auto px-6 py-20">
+            <h2 class="mb-6 text-3xl font-bold">시공사진</h2>
+            <div class="grid gap-6 md:grid-cols-3 mb-12">
+              ${['./photo38.png', './photo39.png', './photo40.png'].map((img, index) => `
+                <div class="overflow-hidden rounded-[2rem] bg-white shadow-sm ring-1 ring-slate-200">
+                  <img src="${img}" alt="시공사진 ${index + 1}" class="h-64 w-full object-cover" />
+                  <div class="p-4 text-sm font-medium text-slate-700">시공사진 ${index + 1}</div>
+                </div>`).join('')}
+            </div>
+
+            <h2 id="colorchart" class="mb-6 text-3xl font-bold">색견표</h2>
+            <div class="grid gap-6 md:grid-cols-4 mb-12">
+              ${['./photo41.png', './photo42.png', './photo43.png', './photo44.png'].map((img, index) => `
+                <div class="overflow-hidden rounded-[2rem] bg-white shadow-sm ring-1 ring-slate-200">
+                  <img src="${img}" alt="색견표 ${index + 1}" class="h-52 w-full object-cover" />
+                  <div class="p-4 text-sm font-medium text-slate-700">색견표 ${index + 1}</div>
+                </div>`).join('')}
+            </div>
+
+            <h2 id="library" class="mb-6 text-3xl font-bold">자료실</h2>
+            <div class="grid gap-4 text-gray-600 mb-12">
+              <p>· 카탈로그, 시험성적서, 제품 자료, 시공 관련 문서 업로드 가능</p>
+              <p>· PDF, 이미지, 다운로드 버튼 형태로 확장 가능</p>
+              <p>· 추후 자료 파일명 및 링크 연결 가능</p>
+            </div>
+
+            <h2 id="estimate" class="mb-6 text-3xl font-bold">소량시공 견적문의</h2>
+            <div class="grid gap-4 text-sm text-slate-700 md:grid-cols-3 mb-16">
+              <div class="rounded-2xl bg-slate-50 px-5 py-4">
+                <div class="text-slate-500">전화</div>
+                <div class="mt-1 font-semibold">031-511-8454</div>
+              </div>
+              <div class="rounded-2xl bg-slate-50 px-5 py-4">
+                <div class="text-slate-500">이메일</div>
+                <div class="mt-1 font-semibold">esenc@naver.com</div>
+              </div>
+              <div class="rounded-2xl bg-slate-50 px-5 py-4">
+                <div class="text-slate-500">주소</div>
+                <div class="mt-1 font-semibold">경기도 구리시 체육관로 137-8 미래타워</div>
+              </div>
+            </div>
+
+            <div class="mb-16">
+              <h2 class="text-3xl font-bold mb-6">오시는 길</h2>
+              <div class="w-full h-80 rounded-2xl overflow-hidden border bg-slate-100 flex items-center justify-center text-center p-6 text-slate-600">
+                카카오 지도 링크는 보안 정책 때문에 일반 iframe에 바로 표시되지 않을 수 있습니다.<br />
+                아래 버튼으로 카카오맵에서 위치를 확인하세요.<br /><br />
+                <a href="https://map.kakao.com/link/search/경기도%20구리시%20체육관로%20137-8%20미래타워" target="_blank" rel="noopener noreferrer" class="inline-flex min-h-12 items-center justify-center rounded-2xl bg-yellow-400 px-6 py-3 text-sm font-semibold text-slate-900">카카오맵으로 위치 보기</a>
+              </div>
+            </div>
+
+            <div class="border-t pt-6 text-xs text-gray-500 text-center leading-6">
+              <div>상호 : 보수대장 | 대표 : 홍길동</div>
+              <div>사업자등록번호 : 123-45-67890</div>
+              <div>주소 : 경기도 구리시 체육관로 137-8 미래타워</div>
+              <div>TEL : 031-511-8454 | FAX : 031-511-8455 | 이메일 : esenc@naver.com</div>
+              <div class="mt-2">COPYRIGHT © 보수대장 ALL RIGHTS RESERVED.</div>
+            </div>
+          </section>
+
+          <a href="tel:0315118454" class="fixed bottom-4 left-1/2 -translate-x-1/2 md:hidden bg-red-600 text-white px-6 py-4 rounded-full shadow-xl text-sm font-semibold z-50">📞 031-511-8454 전화상담</a>
+        </div>`;
+      }
+
+      function render() {
+        const hash = window.location.hash.replace('#', '');
+        const app = document.getElementById('app');
+        if (hash.startsWith('detail/')) {
+          const slug = hash.replace('detail/', '');
+          const detail = detailPages.find(item => item.slug === slug);
+          app.innerHTML = detail ? detailView(detail) : homeView();
+          window.scrollTo({ top: 0, behavior: 'instant' });
+        } else {
+          app.innerHTML = homeView();
+        }
+      }
+
+      function openDetail(slug) {
+        window.location.hash = `detail/${slug}`;
+      }
+
+      function goHome() {
+        window.location.hash = 'home';
+      }
+
+      function goHomeAndScroll(id) {
+        window.location.hash = 'home';
+        setTimeout(() => {
+          document.getElementById(id)?.scrollIntoView({ behavior: 'smooth' });
+        }, 50);
+      }
+
+      window.addEventListener('hashchange', render);
+      render();
+    </script>
+  </body>
 </html>
