@@ -1,21 +1,24 @@
-<!DOCTYPE html>
-
+<!doctype html>
 <html lang="ko">
-<head>
-<meta charset="utf-8"/>
-<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
-<title>보수대장 | 탄성포장재보수전문회사</title>
-<meta content="보수대장은 탄성포장재 보수 전문 회사로 부분보수부터 전체 재시공까지 현장 상황에 맞는 최적의 해결책을 제공합니다." name="description"/>
-<script src="https://cdn.tailwindcss.com"></script>
-<style>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>보수대장 | 탄성포장재보수전문회사</title>
+    <meta
+      name="description"
+      content="보수대장은 탄성포장재 보수 전문 회사로 부분보수부터 전체 재시공까지 현장 상황에 맞는 최적의 해결책을 제공합니다."
+    />
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
       html { scroll-behavior: smooth; }
       body { font-family: Pretendard, Apple SD Gothic Neo, Noto Sans KR, system-ui, sans-serif; }
       .section-title { letter-spacing: -0.02em; }
     </style>
-</head>
-<body class="bg-white text-slate-900">
-<div id="app"></div>
-<script>
+  </head>
+  <body class="bg-white text-slate-900">
+    <div id="app"></div>
+
+    <script>
       const detailPages = [
         {
           slug: 'rubber-double-layer',
@@ -24,7 +27,7 @@
           hero: './photo1.png',
           summary: '충격 흡수성과 안전성을 고려한 복층 구조 포장 방식으로 어린이 놀이터, 유치원, 학교 시설 등에 적합한 시공 솔루션입니다.',
           points: ['상부와 하부를 분리한 복층 구조로 탄성과 내구성 확보', '어린이 활동 공간에 적합한 충격 완화 성능', '색상 구성과 패턴 적용이 쉬워 디자인 연출 가능'],
-          images: ['./photo11.png', './photo12.png', './photo13.png'],
+          images: ['./detail_replaced_fix.png', './detail_replaced_fix2.png', './d_rd_03.png'],
           applications: ['어린이 놀이터', '유치원 실외공간', '학교 놀이시설', '근린공원 놀이구역'],
           process: ['손상 범위 및 하부 상태 점검', '부분 절개 또는 전체 면 정리', '하부 보강 및 접착 처리', '상부 칩 마감 및 색상 보정'],
           faq: [
@@ -39,7 +42,7 @@
           hero: './photo2.png',
           summary: '경제성과 시공 효율을 고려한 단층 포장으로 산책로, 보행로, 각종 체육시설 주변 공간에 폭넓게 적용할 수 있습니다.',
           points: ['비용 효율이 높고 유지보수가 편리한 구조', '보행 동선과 야외 활동 공간에 적합', '현장 용도에 따라 두께 및 마감 조정 가능'],
-          images: ['./photo14.png', './photo15.png', './photo16.png'],
+          images: ['./d_rs_01.png', './d_rs_02.png', './d_rs_03.png'],
           applications: ['아파트 산책로', '공원 보행로', '체육시설 주변', '휴게공간 연결동선'],
           process: ['현장 상태 및 배수 확인', '들뜸·균열 부위 정리', '기초면 접착 처리', '단층 포설 및 마감'],
           faq: [
@@ -54,7 +57,7 @@
           hero: './photo3.png',
           summary: '육상트랙, 다목적구장, 학교 체육시설에 적합한 전문 바닥 시스템으로 운동 성능과 내구성을 함께 고려한 시공입니다.',
           points: ['운동 특성에 맞춘 탄성 및 마찰 성능 확보', '학교 및 공공체육시설에 폭넓게 적용 가능', '기존 바닥 상태에 맞춘 보수 또는 재시공 가능'],
-          images: ['./photo17.png', './photo18.png', './photo19.png'],
+          images: ['./d_pu_01.png', './d_pu_02.png', './d_pu_03.png'],
           applications: ['학교 운동장', '육상트랙', '다목적구장', '공공 체육시설'],
           process: ['기존 바닥 열화 상태 진단', '균열·들뜸 부위 절삭 및 보수', '탄성층·마감층 시공', '라인마킹 및 최종 점검'],
           faq: [
@@ -69,7 +72,7 @@
           hero: './photo4.png',
           summary: '도막형 바닥재는 미끄럼 저항성과 내구성을 높여 주차장, 진출입로, 경사로 등 다양한 공간에 적용할 수 있는 실용적인 솔루션입니다.',
           points: ['미끄럼방지 성능 강화', '주차장 및 경사로 환경에 적합', '현장 환경에 따라 다양한 마감 선택 가능'],
-          images: ['./photo20.png', './photo21.png', './photo22.png'],
+          images: ['./d_cf_01.png', './d_cf_02.png', './d_cf_03.png'],
           applications: ['주차장 경사로', '지하주차장', '출입구 구간', '미끄럼 위험 구역'],
           process: ['오염 제거 및 면처리', '프라이머 도포', '도막층 시공', '논슬립 마감 및 건조'],
           faq: [
@@ -84,7 +87,7 @@
           hero: './photo5.png',
           summary: '자연스러운 질감과 다양한 색상 표현이 가능한 포장 방식으로 산책로, 놀이터, 휴게공간 등 경관과 기능을 함께 고려하는 공간에 적합합니다.',
           points: ['경관 친화적인 자연스러운 연출 가능', '다양한 색상과 질감 구현 가능', '보행 공간 및 휴게 공간에 적합'],
-          images: ['./photo23.png', './photo24.png', './photo25.png'],
+          images: ['./d_cc_01.png', './d_cc_02.png', './d_cc_03.png'],
           applications: ['공원 산책로', '놀이터 주변', '단지 휴게공간', '조경 연계 구간'],
           process: ['현장 패턴 및 색상 협의', '기초면 정리', '소재 포설 및 마감', '경계부 디테일 정리'],
           faq: [
@@ -99,7 +102,7 @@
           hero: './photo6.png',
           summary: '에폭시와 폴리우레아 바닥 시스템은 공장, 창고, 주차장 등 고강도 내구성과 유지관리 효율이 중요한 공간에 적합합니다.',
           points: ['내마모성과 내오염성이 우수한 바닥 시스템', '산업 현장과 주차장 환경에 적합', '사용 목적에 따라 다양한 사양 적용 가능'],
-          images: ['./photo26.png', './photo27.png', './photo28.png'],
+          images: ['./d_ep_01.png', './d_ep_02.png', './d_ep_03.png'],
           applications: ['공장 내부', '물류창고', '지하주차장', '산업설비 구간'],
           process: ['하부면 수분 및 균열 점검', '연삭·청소 등 바탕면 정리', '프라이머 및 중도 시공', '상도 마감 및 보호층 처리'],
           faq: [
@@ -114,7 +117,7 @@
           hero: './photo7.png',
           summary: '자연 친화적인 분위기를 조성하는 포장 방식으로 산책로, 광장, 공원 공간 등에 어울리는 바닥 솔루션입니다.',
           points: ['자연스러운 색감과 분위기 연출', '공원 및 광장 등 외부 공간에 적합', '현장 여건에 따라 다양한 시공 방식 적용 가능'],
-          images: ['./photo29.png', './photo30.png', './photo31.png'],
+          images: ['./d_lc_01.png', './d_lc_02.png', './d_lc_03.png'],
           applications: ['근린공원', '광장 보행로', '자연학습장', '테마 산책구간'],
           process: ['지반 상태 및 배수 계획 확인', '기초면 정리 및 레벨 조정', '포설 및 압착', '표면 정리 및 양생 관리'],
           faq: [
@@ -129,7 +132,7 @@
           hero: './photo8.png',
           summary: '케미칼 테니스코트는 균일한 구질과 안정적인 경기 환경을 제공하는 아크릴 하드코트 방식으로 각종 테니스 시설에 적합합니다.',
           points: ['일정한 표면 상태와 경기 성능 확보', '학교, 체육시설, 공공 코트에 적합', '기존 코트 보수 및 재도장 대응 가능'],
-          images: ['./photo32.png', './photo33.png', './photo34.png'],
+          images: ['./d_tc_01.png', './d_tc_02.png', './d_tc_03.png'],
           applications: ['학교 테니스코트', '체육센터 코트', '공공시설 코트', '클럽 구장'],
           process: ['기존 코트 표면 진단', '크랙 보수 및 레벨 정리', '아크릴 시스템 도장', '라인마킹 및 완성 점검'],
           faq: [
@@ -144,7 +147,7 @@
           hero: './photo9.png',
           summary: '각종 체육시설과 야외 활동 공간에 적합한 인조잔디 포장으로 관리 효율과 활용도를 함께 높일 수 있습니다.',
           points: ['다양한 체육시설에 적용 가능한 범용성', '유지관리 효율이 높고 시각적 완성도가 우수', '사용 목적에 맞춘 규격과 충진재 구성 가능'],
-          images: ['./photo35.png', './photo36.png', './photo37.png'],
+          images: ['./d_at_01.png', './d_at_02.png', './d_at_03.png'],
           applications: ['풋살장', '학교 운동공간', '야외 체육공간', '다목적 활동구역'],
           process: ['기초면 평활도 확인', '하부 정리 및 배수 확인', '잔디 포설 및 접합', '충진재 시공 및 정리'],
           faq: [
@@ -289,7 +292,7 @@
               <div class="text-sm font-semibold text-slate-500">GALLERY</div>
               <h2 class="section-title mt-3 text-3xl font-bold md:text-4xl">상세 이미지</h2>
             </div>
-            <div class="mt-10 grid gap-6 md:grid-cols-3">
+            <div class="mt-10 grid items-stretch gap-6 md:grid-cols-3">
               ${detail.images.map((img, index) => `
                 <button onclick="openLightbox('${detail.slug}', ${index})" class="overflow-hidden rounded-[2rem] bg-white text-left shadow-sm ring-1 ring-slate-200 transition hover:-translate-y-1 hover:shadow-lg">
                   <img src="${img}" alt="${detail.title} ${index + 1}" class="h-72 w-full object-cover" />
@@ -374,8 +377,8 @@
           </header>
 
           <section id="home" class="relative overflow-hidden border-b">
-            <img src="./hero.png" alt="보수대장 메인 비주얼" class="absolute inset-0 h-full w-full object-cover opacity-20" />
-            <div class="absolute inset-0 bg-gradient-to-r from-white via-white/90 to-white/70"></div>
+            <img src="./hero.png" alt="보수대장 메인 비주얼" class="absolute inset-0 h-full w-full object-cover opacity-35" />
+            <div class="absolute inset-0 bg-gradient-to-r from-white/78 via-white/68 to-white/52"></div>
             <div class="relative mx-auto max-w-7xl px-6 py-20 md:py-32">
               <div class="grid gap-12 lg:grid-cols-[1.05fr_0.95fr] lg:items-end">
                 <div class="max-w-3xl">
@@ -480,13 +483,15 @@
             </div>
             <div class="mt-10 grid gap-6 md:grid-cols-3">
               ${detailPages.map(item => `
-                <button onclick="openDetail('${item.slug}')" class="overflow-hidden rounded-[2rem] border border-slate-200 text-left shadow-sm transition hover:-translate-y-1 hover:shadow-lg">
-                  <img src="${item.hero}" alt="${item.title}" class="h-56 w-full object-cover" />
-                  <div class="p-5">
-                    <div class="text-lg font-semibold">${item.title}</div>
-                    <div class="mt-1 text-sm text-slate-500">${item.subtitle}</div>
-                    <p class="mt-3 text-sm leading-7 text-slate-600">${item.summary}</p>
-                    <div class="mt-4 inline-flex rounded-full bg-slate-100 px-3 py-1 text-xs font-semibold text-slate-600">상세보기</div>
+                <button onclick="openDetail('${item.slug}')" class="flex h-full w-full flex-col overflow-hidden rounded-[2rem] border border-slate-200 bg-white text-left align-top shadow-sm transition hover:-translate-y-1 hover:shadow-lg">
+                  <div class="block aspect-[16/9] w-full overflow-hidden bg-slate-100">
+                    <img src="${item.hero}" alt="${item.title}" class="block h-full w-full object-cover object-center align-top" />
+                  </div>
+                  <div class="flex flex-1 flex-col p-5">
+                    <div class="text-lg font-semibold" style="letter-spacing:0;word-spacing:0">${item.title}</div>
+                    <div class="mt-1 text-sm text-slate-500" style="letter-spacing:0;word-spacing:0">${item.subtitle}</div>
+                    <p class="mt-3 flex-1 text-sm leading-7 text-slate-600">${item.summary}</p>
+                    <div class="mt-4 inline-flex w-fit rounded-full bg-slate-100 px-3 py-1 text-xs font-semibold text-slate-600" style="letter-spacing:0;word-spacing:0">상세보기</div>
                   </div>
                 </button>`).join('')}
             </div>
@@ -513,11 +518,20 @@
             <div class="text-sm font-semibold text-slate-500">GALLERY</div>
             <h2 class="section-title mt-3 text-3xl font-bold md:text-4xl">시공사진</h2>
             <div class="mt-10 grid gap-6 md:grid-cols-3">
-              ${['./photo38.png', './photo39.png', './photo40.png', './photo45.png', './photo46.png', './photo47.png'].map((img, index) => `
-                <button onclick="openStandaloneLightbox(${index})" class="overflow-hidden rounded-[2rem] bg-white shadow-sm ring-1 ring-slate-200 transition hover:-translate-y-1 hover:shadow-lg">
-                  <img src="${img}" alt="시공사진 ${index + 1}" class="h-64 w-full object-cover" />
-                  <div class="p-4 text-sm font-medium text-slate-700">시공사진 ${index + 1}</div>
-                </button>`).join('')}
+              <div class="grid gap-6 md:grid-cols-2">
+                <div class="rounded-[2rem] bg-white p-4 shadow-sm ring-1 ring-slate-200">
+                  <div class="mb-3 text-sm font-semibold text-slate-500">보수 전</div>
+                  <button onclick="openStandaloneLightbox(0)" class="block w-full overflow-hidden rounded-[1.5rem]">
+                    <img src="./photo11.png" alt="보수 전" class="h-72 w-full rounded-[2rem] object-cover shadow-sm ring-1 ring-slate-200" />
+                  </button>
+                </div>
+                <div class="rounded-[2rem] bg-white p-4 shadow-sm ring-1 ring-slate-200">
+                  <div class="mb-3 text-sm font-semibold text-slate-500">보수 후</div>
+                  <button onclick="openStandaloneLightbox(1)" class="block w-full overflow-hidden rounded-[1.5rem]">
+                    <img src="./photo12.png" alt="보수 후" class="h-72 w-full rounded-[2rem] object-cover shadow-sm ring-1 ring-slate-200" />
+                  </button>
+                </div>
+              </div>
             </div>
           </section>
 
@@ -526,7 +540,7 @@
               <div class="text-sm font-semibold text-slate-500">COLOR</div>
               <h2 class="section-title mt-3 text-3xl font-bold md:text-4xl">색견표</h2>
               <div class="mt-10 grid gap-6 md:grid-cols-4">
-                ${['./photo41.png', './photo42.png', './photo43.png', './photo44.png'].map((img, index) => `
+                ${['./m_01.png', './m_02.png', './m_03.png', './m_04.png'].map((img, index) => `
                   <div class="overflow-hidden rounded-[2rem] bg-white shadow-sm ring-1 ring-slate-200">
                     <img src="${img}" alt="색견표 ${index + 1}" class="h-52 w-full object-cover" />
                     <div class="p-4 text-sm font-medium text-slate-700">색견표 ${index + 1}</div>
@@ -656,7 +670,7 @@
       }
 
       function openStandaloneLightbox(index) {
-        const images = ['./photo38.png', './photo39.png', './photo40.png', './photo45.png', './photo46.png', './photo47.png'];
+        const images = ['./d_rd_01.png', './d_rd_02.png'];
         lightboxImages = images.map((src, i) => ({ src, alt: `시공사진 ${i + 1}` }));
         lightboxIndex = index;
         renderLightbox();
@@ -711,5 +725,5 @@
       window.addEventListener('hashchange', render);
       render();
     </script>
-</body>
+  </body>
 </html>
