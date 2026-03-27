@@ -18,167 +18,42 @@ const detailPages = [
     title: '고무칩 복층포장',
     subtitle: '어린이 놀이터 등',
     hero: './photo1.png',
-
-    summary: '어린이 놀이터 등에서 사용되는 고무칩 복층포장은 충격 흡수와 안전성을 고려한 구조입니다.',
-
-    points: [
-      '복층 구조로 충격 흡수 기능 강화',
-      '어린이 시설에 적합',
-      '색상 및 디자인 적용 가능'
-    ],
-
-    painPoints: [
-      '바닥이 갈라지고 들뜸 발생',
-      '부분 보수 후 색상 차이 발생',
-      '같은 구간 반복 파손'
-    ],
-
-    solutions: [
-      '손상 범위 확인 후 부분보수 진행',
-      '기존 바닥 상태에 맞춰 재시공 여부 판단',
-      '색상 차이를 최소화한 보수 작업'
-    ],
-
-    process: [
-      '현장 상태 확인',
-      '손상 부위 정리',
-      '보수 시공 진행',
-      '마감 및 점검'
-    ],
-
+    summary: '탄성포장 보수 공법입니다.',
+    points: ['충격 흡수','안전성'],
+    painPoints: ['균열','들뜸'],
+    solutions: ['부분보수'],
+    process: ['확인','시공'],
     beforeAfter: [
-      { before: './before1.jpg', after: './after1.jpg' },
-      { before: './before2.jpg', after: './after2.jpg' }
+      { before: './before1.jpg', after: './after1.jpg' }
     ],
-
-    processImages: [
-      './process1.jpg',
-      './process2.jpg',
-      './process3.jpg'
-    ],
-
-    applications: ['놀이터', '유치원', '학교'],
-
-    cta: '놀이터 바닥 손상은 방치하면 더 큰 비용이 발생합니다. 상담 후 보수 진행 가능합니다.'
+    processImages: ['./process1.jpg'],
+    applications: ['놀이터'],
+    cta: '문의 바랍니다.'
   }
 ];
 
-
 function detailView(d){
-
 return `
-<div class="min-h-screen">
-
-<header class="border-b p-4 flex justify-between">
-  <div class="font-bold">보수대장</div>
-  <button onclick="goHome()">홈</button>
-</header>
-
-<section class="p-10 bg-gray-100">
-  <h1 class="text-3xl font-bold">${d.title}</h1>
-  <p class="mt-3">${d.summary}</p>
-</section>
-
-<section class="p-10">
-  <h2 class="text-2xl font-bold mb-4">주요 특징</h2>
-  ${d.points.map(p=>`<p class="mb-2">✔ ${p}</p>`).join('')}
-</section>
-
-<section class="p-10 bg-gray-100">
-  <h2 class="text-2xl font-bold mb-4">문제 상황</h2>
-  ${d.painPoints.map(p=>`<p class="mb-2">- ${p}</p>`).join('')}
-</section>
-
-<section class="p-10">
-  <h2 class="text-2xl font-bold mb-4">보수 방법</h2>
-  ${d.solutions.map(p=>`<p class="mb-2">- ${p}</p>`).join('')}
-</section>
-
-<section class="p-10 bg-gray-100">
-  <h2 class="text-2xl font-bold mb-6">Before / After</h2>
-  <div class="grid md:grid-cols-2 gap-6">
-    ${d.beforeAfter.map(i=>`
-      <div>
-        <img src="${i.before}" class="w-full h-60 object-cover">
-        <img src="${i.after}" class="w-full h-60 object-cover mt-2">
-      </div>
-    `).join('')}
-  </div>
-</section>
-
-<section class="p-10">
-  <h2 class="text-2xl font-bold mb-4">작업 과정</h2>
-  ${d.process.map((p,i)=>`<p>${i+1}. ${p}</p>`).join('')}
-</section>
-
-<section class="p-10 bg-gray-100">
-  <h2 class="text-2xl font-bold mb-4">적용 장소</h2>
-  ${d.applications.map(p=>`<p>- ${p}</p>`).join('')}
-</section>
-
-<section class="p-10">
-  <h2 class="text-xl font-bold">문의</h2>
-  <p class="mt-2">${d.cta}</p>
-</section>
-
+<div>
+<h1>${d.title}</h1>
+<p>${d.summary}</p>
 </div>
 `;
 }
-
 
 function homeView(){
 return `
 <div>
-
-<header class="border-b p-4 flex justify-between">
-  <div class="font-bold">보수대장</div>
-</header>
-
-<section class="p-10">
-  <h1 class="text-3xl font-bold">탄성포장재 보수 전문</h1>
-  <p class="mt-4">부분보수부터 전체 재시공까지 현장에 맞게 진행합니다.</p>
-</section>
-
-<section class="p-10">
-  <h2 class="text-2xl font-bold mb-6">보수 가능 공법</h2>
-
-  ${detailPages.map(p=>`
-    <div class="mb-6 cursor-pointer" onclick="openDetail('${p.slug}')">
-      <img src="${p.hero}" class="w-full h-48 object-cover">
-      <p class="mt-2 font-semibold">${p.title}</p>
-    </div>
-  `).join('')}
-
-</section>
-
-<section class="p-10 bg-gray-100">
-  <h2 class="text-2xl font-bold mb-6">자료실</h2>
-
-  <div class="mb-4">
-    <p class="font-semibold">카탈로그</p>
-    <button class="text-blue-600">다운로드</button>
-  </div>
-
-  <div class="mb-4">
-    <p class="font-semibold">시험성적서</p>
-    <button class="text-blue-600">다운로드</button>
-  </div>
-
-</section>
-
-<section class="p-10">
-  <h2 class="text-2xl font-bold mb-4">문의</h2>
-  <p>전화: 031-511-8454</p>
-</section>
-
+<h1>보수대장</h1>
+${detailPages.map(p=>`
+<div onclick="openDetail('${p.slug}')">${p.title}</div>
+`).join('')}
 </div>
 `;
 }
 
-
 function render(){
   const hash = location.hash.replace('#','');
-
   if(hash.startsWith('detail/')){
     const slug = hash.replace('detail/','');
     const d = detailPages.find(x=>x.slug===slug);
@@ -190,10 +65,6 @@ function render(){
 
 function openDetail(slug){
   location.hash = 'detail/' + slug;
-}
-
-function goHome(){
-  location.hash = '';
 }
 
 window.addEventListener('hashchange', render);
